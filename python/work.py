@@ -1,5 +1,6 @@
 from operator import truediv
 
+eee=1
 
 num = int(input())
 c="년은 평년입니다"
