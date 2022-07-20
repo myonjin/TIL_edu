@@ -1,3 +1,11 @@
-hello= input()
+score = {
+'python': 80,
+'django': 89,
+'web': 83
+}
 
-print(hello)
+score['alforithm'] = 90
+score.update({'python':85})
+print(sum(score.values())//len(score))
+
+
