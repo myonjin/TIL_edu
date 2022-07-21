@@ -1,0 +1,1 @@
+# Local Scope - Enclosed Scope - Global Scope - Built in Scope
