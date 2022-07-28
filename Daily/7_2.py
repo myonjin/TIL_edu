@@ -1,23 +1,19 @@
-class doggy:
-    
-    count=0
-    num_of_dogs=5
-    birth_of_dogs=5
+class Doggy:
+    num_of_dogs = 0
+    birth_of_dogs = 0
 
-    def __init__(self,name,breed):
-        self.name =name
-        self.breed= breed
-        
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+        Doggy.num_of_dogs += 1
+        Doggy.birth_of_dogs += 1
 
-    def talk(self):
-        print('멍')
-    
-    def get_status(self):
-        print(birth_of_dogs,num_of_dogs)
+    def __del__(self):
+        Doggy.num_of_dogs -= 1
 
-t1= doggy()
-t1.get_status()
+    def bark(self):
+        return '왈왈!'
 
-dog = doggy('siba')
-print(dog.name)
-
+    @classmethod
+    def get_status(cls):
+        return f'Birth: {cls.birth_of_dogs}, Current: {cls.num_of_dogs}'
