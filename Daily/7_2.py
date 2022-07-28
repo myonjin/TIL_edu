@@ -17,3 +17,7 @@ class Doggy:
     @classmethod
     def get_status(cls):
         return f'Birth: {cls.birth_of_dogs}, Current: {cls.num_of_dogs}'
+    
+dog=Doggy('개똘','루루')
+dog.bark()
+dog.get_status()
