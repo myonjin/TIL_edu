@@ -1,5 +1,6 @@
 # 여기에 필요한 모듈을 추가합니다.
 import json
+from operator import is_
 import random
 
 class Lotto:
@@ -41,9 +42,20 @@ class Lotto:
         print('===============================================')
         list_1=['A','B','C','D','E']
         # for i in range(len(self.numbers_lines)):
-        self.get_same_info(dang, bonus, self.numbers_lines)
-        # print(self.get_same_info(dang,bonus,self.numbers_lines))
-        # print(self.numbers_lines[0])
+        # self.get_same_info(dang, bonus, self.numbers_lines[0])
+        for i in range(len(self.numbers_lines)):
+            
+            same_main_counts, is_bonus=self.get_same_info(dang,bonus,self.numbers_lines[i])
+            ranking=self.get_ranking(same_main_counts, is_bonus)
+            if ranking==0:
+                ranking='낙첨'
+            else:
+                ranking=f'({ranking}등 당첨!)'
+            if is_bonus==True:
+                pass    
+            
+            print(list_1[i],':',f'{same_main_counts}','개 일치',f'{is_bonus}',ranking) 
+
         pass
 
     # 3-3. 해당 회차 추첨일의 년, 월, 일 정보를 튜플로 반환하는 스태틱 메서드
@@ -81,19 +93,30 @@ class Lotto:
     def get_same_info(main_numbers, bonus_number, line):
         same_main_counts=0
         is_bonus=''
-        # same_main_counts=len(set(main_numbers)&set(line))
-        print(main_numbers)
-        for i in range(len)
-        print(set(main_numbers),set(line))
-        # if len(set(line)&set(bonus_number))==1:
-        #     is_bonus=True
-        # else:
-        #     is_bonus=False
+        same_main_counts=len(set(main_numbers)&set(line))
+     
+        # print(set(main_numbers),set(line))
+        if len(set(line)&{bonus_number})==1:
+            is_bonus=True
+        else:
+            is_bonus=False
         
-        # return same_main_counts, is_bonus
+        return same_main_counts, is_bonus
 
     # 4-5. 당첨 결과를 정수로 반환하는 스태틱 메서드
     @staticmethod
     def get_ranking(same_main_counts, is_bonus):
-        pass
-        # return ranking 
+        ranking=0
+
+        if same_main_counts==3:
+            ranking=5
+        elif same_main_counts==4:
+            ranking=4
+        elif same_main_counts==5 & is_bonus !=True:
+            ranking=3
+        elif same_main_counts==5 & is_bonus ==True:
+            ranking=2
+        elif same_main_counts==6:
+            ranking=1
+                 
+        return ranking 
