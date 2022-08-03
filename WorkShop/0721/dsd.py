@@ -5,3 +5,6 @@ for i in a:
         result+=a[i][j]
 
 print(result)
+
+
+# 00 10 11 20 21 22 30 31 32 33
