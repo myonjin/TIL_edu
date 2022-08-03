@@ -38,10 +38,13 @@ footer {
 
 
 /* 추가적으로 작성하고 싶은 순수 CSS 코드가 있다면 해당 주석 아래에 작성해 주세요. */
-nav{ 
-  background-color: dimgray;
-  justify-content: space-between;
+ul{
+  list-style:none;
+  }
+a { text-decoration:none }
+ /*nav li{ 
+  
   align-items: center;
   display:flex;
-   ;
-}
+  
+ }
