@@ -17,19 +17,25 @@ for tc in range(1,TC+1):
         if num[i+1]-num[i]>K:
             count=0
 
-
-    if count==-1:
-        count=0
-        h=0
-        while True:
-            if h+K>=N:
+    if count == -1:
+        # 카운트 0으로 초기화
+        count = 0
+        # 커서 0에서 출발
+        cur = 0
+        while cur < N:
+            # 현재 커서와 도착지 사이 간격이 K 이하일 때,
+            # 주유소 경유 없이 도착 가능하므로 break
+            if N - cur <= K:
                 break
-            else:
-                for i in (K+h,h,-1):
-                    if i in num:
-                        h=i
-                        count+=1
-                        break
+
+            # 현재 커서~K까지 간격을 역순 탐색하며
+            # 구간 내 가장 idx 큰 주유소 탐색 후 count
+            for b in range(K + cur, cur, -1):
+                if b in num:
+                    cur = b
+                    count += 1
+                    # print(cur, count)
+                    break
 
     print(f"#{tc} {count}")
 
