@@ -37,5 +37,5 @@ for i in range(E):
     # 1 3 5 7 9 11
     G[data[i * 2]][data[i * 2 + 1]] = 1
     G[data[i * 2 + 1]][data[i * 2]] = 1
-# pprint(G)
+pprint(G)
 DFS(1)
