@@ -26,7 +26,6 @@ for tc in range(1,T+1):
     M=[list(map(int,input())) for _ in range(N)]
     i_d=0
     j_d=0
-    h=0
     for i in range(N):
         for j in range(N):
             if M[i][j]==2:

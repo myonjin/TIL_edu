@@ -3,7 +3,7 @@ sys.stdin = open('input.txt')
 
 
 
-for tc in range(1,11):
+for tc in range(1,2):
     T=int(input())
     num=list(map(int, input().split()))
     num_max=num[0]
@@ -12,12 +12,13 @@ for tc in range(1,11):
     index_min=0
     result=0
     c=0
+    print(num)
     while c<=T:
-
         for i in range(len(num)-1, 0, -1):
             for j in range(i):
                 if num[j] > num[j + 1]:
                     num[j], num[j + 1] = num[j + 1], num[j]
+
         num_max=num[-1]
         num_min=num[0]
         index_max = num.index(num_max)
