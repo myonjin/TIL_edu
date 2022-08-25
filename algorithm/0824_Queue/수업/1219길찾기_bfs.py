@@ -24,4 +24,4 @@ for _ in range(1):
         adjlist[a].append(b)
     # print(adjlist)
 
-    bfs(0,99, 99) # 시작, 마지막 정점 , 목표 정점
+    bfs(0,99) # 시작, 마지막 정점 , 목표 정점
