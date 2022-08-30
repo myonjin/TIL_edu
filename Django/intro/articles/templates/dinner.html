@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  dinner
+{% endblock title %}
+
+{% block content %}
+  <h1>오늘의 저녁메뉴 {{ dinner }}</h1>
+  <p>추천메뉴는 {{ pick }}</p>
+  <hr>
+
+  <p>메뉴판</p>
+  <ul>
+    {% for menu in dinner %}
+      <li>{{ menu }}</li>
+    {% endfor %}
+  </ul>
+
+  <!-- 태그를 쓸떄는 endfor를 같이 만들어줘야한다. -->
+  {% comment %}  {% endcomment %}
+  {% for money in wallet %}
+    <p>{{ money }}</p>
+  {% empty %}
+    <p>돈이 없어요...</p>
+  {% endfor %}
+
+  <p>
+    {% lorem 5 w random %}
+    {% lorem 2 p %}
+  </p>
+
+  <p>첫번째 저녁메뉴는 {{ dinner.0 }}</p>
+
+  <ul>
+    {% for menu in dinner %}
+      {% if forloop.first %}
+        <li>{{ menu }}엔 고춧가루</li>
+      {% else %}
+        <li>{{ menu }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endblock content %}
