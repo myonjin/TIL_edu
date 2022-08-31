@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Throw에서 보낸 데이터</h1>
+  <p>사용자명 : {{ username }} </p>
+
+  {% comment %} <a href="http://127.0.0.1:8000/throw/">[BACK]</a> {% endcomment %}
+  <a href="{% url 'throw' %}">[BACK]</a>
+  {% comment %} <a href="throw/">[BACK]</a> {% endcomment %}
+{% endblock content %}

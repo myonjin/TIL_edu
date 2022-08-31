@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>데이터 던지는 곳</h1>
+  <!-- method는 기본적으로 GET 이다 -->
+  <!-- action에는 상대/절대 경로를 모두 쓸 수 있다. -->
+  <form action="{% url 'catch' %}">
+    <label for="username">Name</label>
+    <!-- name:value -->
+    <input type="text" id="username" name='username'>
+    <input type="submit">
+  </form>
+{% endblock content %}
