@@ -1,5 +1,4 @@
 import random
-import datetime
 from django.shortcuts import render
 
 # Create your views here.
@@ -8,11 +7,7 @@ def index(request):
     # print(request.user)
     # template을 return
     # return render(request, 'templates/articles/index.html')
-    today=datetime.datetime.now()
-    context={
-        'today':today
-    }
-    return render(request, 'articles/index.html',context)
+    return render(request, 'articles/index.html')
 
 def greeting(request):
     name = 'Alice'

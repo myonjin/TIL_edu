@@ -5,6 +5,6 @@
 {% endblock title %}
 
 {% block content %}
-  <h1>{{ today | date:'Y년 m월 j일 (D) A h:i'}}</h1>  
-  
+  <h1>Hello, World!</h1> 
+  <a href="{% url 'index' %}">두번쨰 앱의 인덱스로</a> 
 {% endblock content %}
