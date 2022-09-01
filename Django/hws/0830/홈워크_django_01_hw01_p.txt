@@ -1,0 +1,5 @@
+$ django-admin startproject my_pjt .
+
+$ django-admin startproject my_app .
+
+$ python manage.py runserver
