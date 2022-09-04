@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>INDEX PAGE</h1>
+  <a href="{% url 'articles:new' %}">[CREATE]</a>
+
+  {% for article in articles %}
+    <p>{{ article.pk }}</p>
+
+    <a href="{% url 'articles:detail' article.pk %}">
+      <p>{{ article.title }}</p>
+    </a>
+    
+    <p>{{ article.content }}</p>
+    <hr>
+  {% endfor %}
+{% endblock content %}
+
+{% comment %} {% block footer %}
+  <p>나는 좀 다른 footer 필요해</p>
+{% endblock footer %} {% endcomment %}
