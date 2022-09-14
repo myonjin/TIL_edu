@@ -1,3 +1,4 @@
+
 T=int(input())
 def inorder(n):
     global cnt,result1,result2

@@ -32,6 +32,5 @@ def deq():
 heap = [0] * 100
 last = 0
 
-for i in range(1,7):
-    enq(i)
+
 print(heap)
