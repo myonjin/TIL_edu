@@ -6,8 +6,8 @@ def inorder(n):
         inorder(n*2)
         cnt+=1
         if n==1: #왼쪽 다봤으면
-            result1=cnt
-        if n==V//2:
+            result1=cnt  #루트노트 계산
+        if n==V//2:     #마지막노드의 부모노드
             result2=cnt
         inorder(n*2+1)
 
