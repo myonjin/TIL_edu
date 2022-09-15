@@ -10,7 +10,7 @@ def bfs(V,N): # V 시작정점, N 마지막 정점 번호
         print(V)        #visit(v)
         for w in adjlist[V]:  #인접하고 미방문 정점 w가있으면
             if visited[w] == 0:
-                a.append(w)
+                q.append(w)
                 visited[w] = visited[V] + 1
     return  0
 
@@ -22,6 +22,7 @@ for _ in range(1):
     for i in range(E):
         a,b = arr[i*2], arr[i*2+1]
         adjlist[a].append(b)
-    # print(adjlist)
+
+    print(adjlist)
 
     bfs(0,99) # 시작, 마지막 정점 , 목표 정점

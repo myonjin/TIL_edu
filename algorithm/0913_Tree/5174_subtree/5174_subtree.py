@@ -2,7 +2,7 @@ import sys
 sys.stdin = open('input.txt')
 
 T=int(input())
-def preorder(n):
+def preorder(n):                #노드 탐색할대마다 노드의 개수를 추가해줌
     global cnt
     if n:
         cnt+=1
