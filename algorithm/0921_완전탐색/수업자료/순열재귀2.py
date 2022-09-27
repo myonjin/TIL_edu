@@ -1,9 +1,12 @@
 def f(i,k,r):
+
     if i == r:
         print(p)
         arr_list.append(p)
         print(arr_list)
         # arr_list.append(p.copy())
+
+
     else:
         for j in range(k):
             if used[j] == 0: #a[j]가 아직 사용되지 않았으면

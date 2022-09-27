@@ -16,7 +16,6 @@ def f(i,k):
                 continue
 
 
-
     else:
         bit[i] = 1
         if bit[0]==1:
