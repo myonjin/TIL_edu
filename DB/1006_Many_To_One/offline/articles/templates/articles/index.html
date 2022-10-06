@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}   
+  <h1>INDEX PAGE</h1>
+  <a href="{% url 'articles:create' %}">[게시글생성]</a>
+
+  {% for article in articles   %}
+    <a href="{% url 'articles:detail' article.pk %}">
+    <p>{{article.pk}}</p>
+    <p>작성자:{{article.user}}</p>
+    <p>제목 : {{article.title}}</p>
+    <hr>
+    </a>
+
+  {% empty %}
+    <p>아직 게시글이이 없슴</p>
+  {% endfor %}
+
+
+{% endblock content %}  
+
+
+
+

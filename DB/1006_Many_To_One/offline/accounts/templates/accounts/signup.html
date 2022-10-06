@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>sign up page</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="signup">
+  </form>
+  <a href="{% url 'articles:index' %}">[뒤로가기]</a>
+
+{% endblock content %}
+
+
+
