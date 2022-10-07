@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'movies:index' %}">Movie Info</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'movies:index' %}">INDEX</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'movies:create' %}">NEW</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock navbar %}
+{% block content %}
+<div class="d-flex">
+  <div>
+    <h1 class="text-warning">INDEX</h1>
+    <p>{{ movies|length }} 개의 영화가 있습니다.</p>
+  </div>
+  <button type="button" class="btn btn-outline-light ms-auto btn-sm" onclick="location.href='{% url 'movies:create' %}'">NEW POST!</button>
+</div>
+
+<hr>
+<div class="row row-cols-1 row-cols-md-3 g-4 w-75 p-3 mx-auto">
+  {% for movie in movies %}
+    {% comment %} <a href="{% url 'movies:detail' movie.pk %}">
+      <p>{{ movie.title }}</p>
+    </a>
+    <p>{{ movie.score }}</p>
+    <hr> {% endcomment %}
+    <div class="col">
+      <div class="card mb-3 mx-1">
+        <img src="{{ movie.poster_url }}" onclick="location.href='{% url 'movies:detail' movie.pk %}'" style="cursor: pointer; height:600px;" class="card-img-top" alt="...">
+        <div class="card-body text-dark">
+          <h5 class="card-title">
+            <b>{{ movie.title }}</b>
+          </h5>
+            {% if movie.score == 0 %}
+              <p class="card-text">X</p>
+            {% elif movie.score == 0.5 %}
+              <p class="card-text">☆</p>
+            {% elif movie.score == 1.0 %}
+              <p class="card-text">★</p>
+            {% elif movie.score == 1.5 %}
+              <p class="card-text">★☆</p>
+            {% elif movie.score == 2.0 %}
+              <p class="card-text">★★</p>
+            {% elif movie.score == 2.5 %}
+              <p class="card-text">★★☆</p>
+            {% elif movie.score == 3.0 %}
+              <p class="card-text">★★★</p>
+            {% elif movie.score == 3.5 %}
+              <p class="card-text">★★★☆</p>
+            {% elif movie.score == 4.0 %}
+              <p class="card-text">★★★★</p>
+            {% elif movie.score == 4.5 %}
+              <p class="card-text">★★★★☆</p>
+            {% elif movie.score == 5.0 %}
+              <p class="card-text">★★★★★</p>
+            {% endif %}     
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<hr>
+{% endblock content %}

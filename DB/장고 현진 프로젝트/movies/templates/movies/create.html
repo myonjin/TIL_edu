@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+  <div class="d-flex justify-content-center">
+    <div>
+      <h1>CREATE</h1>
+      <form action="{% url 'movies:create' %}" method = "POST">
+        {% csrf_token %}
+        <div style="width:70%;">
+          {% bootstrap_form form %}
+        </div>
+        <input type="submit" value='create' class='btn btn-primary'>
+      </form>
+    </div>
+    <br>
+  </div>
+  <a href="{% url 'movies:index' %}" class='btn btn-primary' >Back</a>
+    
+{% endblock content %}
+
+
+
