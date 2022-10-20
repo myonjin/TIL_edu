@@ -19,7 +19,7 @@ for tc in range(1,11):
     # print(data)
     for i in range(E):
         G[data[i * 2]][data[i * 2 + 1]] = 1
-
+    print(G)
 
     DFS(0)
 
