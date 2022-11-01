@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>점심 메뉴 추천</h2>
+    <button v-on:click="selectOne">Pick One</button>
+    <p>{{ selectedLunch }}</p>
+
+    <hr>
+    
+    <h2>로또</h2>
+    <button @click="selectNumber">Pick Numbers</button>
+    <p>{{ selectedNumbers }}</p>
+  </div>
+  <!-- <div id="app2">
+
+  </div>   -->
+
+  <!-- Vue를 쓰겠다. -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        lunch: ['국밥', '짜장면', '햄버거'],
+        selectedLunch: null,
+        selectedNumbers: []
+      },
+      methods: {
+        selectOne: function () {
+          console.log(_.random(0, this.lunch.length-1))
+          let idx = _.random(0, this.lunch.length-1)
+          this.selectedLunch = this.lunch[idx]
+        },
+        selectNumber() {
+          const numbers = _.range(1, 46)
+          this.selectedNumbers = _.sampleSize(numbers, 6)
+        }
+      }
+    })
+
+    // const app2 = new Vue({
+    //   el: '#app2'
+    // })
+  </script>
+</body>
+</html>

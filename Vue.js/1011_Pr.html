@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .completed {
+      color: gray;
+      text-decoration: line-through;
+    }
+    .none {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 0. 상태별 필터링 select -->
+    <select v-model="status">
+      <option value="all">전체</option>
+      <option value="inProgress">진행 중</option>
+      <option value="completed">완료</option>
+    </select>
+    <!-- 1. 할일 목록 입력 할 수 있는 input -->
+    <input type="text" v-model="content">
+    <button @click="addTodo">+</button>
+    <!-- 2. 할일 목록이 보일 ul -->
+    <ul>
+      <!-- <li v-for="todo in todos" v-bind:key="todo.date"> -->
+      <li v-for="todo in todoListByStatus" :key="todo.date">
+        <!-- 3. 완료 여부 변경 가능한 check box -->
+        <input 
+          type="checkbox"
+          v-model="todo.isCompleted"
+        >
+        <!-- <span
+          :class="isActive"
+        > -->
+        <span
+          :class="{ completed: todo.isCompleted, none: !todo.isCompleted }"
+        >
+          {{ todo.content }}
+          
+        </span>
+      </li>
+    </ul>
+    <!-- 4. 완료된 일 지우는 button -->
+    <button @click="deleteCompleted">완료된 할 일 지우기</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- Vue CDN -->
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        status:'all',
+        isActive: 'completed',
+        content: null,
+        todos: [
+          {
+            content: '워크샵',
+            isCompleted: false,
+            date: new Date().getTime()
+          },
+          {
+            content: '홈워크',
+            isCompleted: false,
+            date: new Date().getTime() + 1
+          },
+        ]
+      },
+      methods: {
+        addTodo() {
+          const todo = {
+            content: this.content,
+            isCompleted: false,
+            date: new Date().getTime()
+          }
+          this.todos.push(todo)
+          this.content = null
+        },
+        isCompledtedToggle(todo) {
+          todo.isCompleted = !todo.isCompleted
+        },
+        deleteCompleted() {
+          // 반환값이 true인 객체들 만 모아서 새 배열 생성
+          this.todos = this.todos.filter(todo => !todo.isCompleted)
+        }
+      },
+      computed :{
+        todoListByStatus(){
+          return this.todos.filter(todo => {
+            if (this.status === 'inProgress') {
+              return !todo.isCompleted 
+            }
+            if (this.status === 'completed') {
+              return todo.isCompleted 
+            }
+            return true
+            
+          })
+        }
+      }
+    })
+  </script>
+</body>
+</html>

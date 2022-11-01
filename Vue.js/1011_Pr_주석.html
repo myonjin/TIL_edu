@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .completed {
+      color: gray;
+      text-decoration: line-through;
+    }
+    .none {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 연결할 div 태그 생성 -->
+  <div id="app">
+    <!-- 0. 상태별 필터링 select : 드롭다운 형태 -->
+    <!-- name은 전송보낼때 key, id는 JS로 select 지정할 떄 사용하므로 둘다 필요 없음 -->
+    <select>
+      <!-- innerText는 사용자에게 보여줄 값-->
+      <!-- value가 날라갈 데이터 _ 전송될 때 사용될 이름-->
+      <option value="all">전체</option> 
+      <option value="inProgress">진행중</option> 
+      <option value="completed">완료</option> 
+    </select>
+    <!-- 1. 할일 목록 입력할 수 있는 input -->
+    <input type="text" v-model="content"> <!-- 양방향 v-model사용해서 content 데이터랑 input태그랑 연결-->
+    <!-- 버튼 태그를 클릭했을 때 addTodo라는 함수가 작동하도록 -->
+    <button @click="addTodo">+</button>
+    <!-- 2. 할일 목록 보일 ul + li태그 -->
+    <ul>
+      <!-- todos 객체 수만큼 li태그가 필요하기 때문에 li 태그에 반복문 달기 -->
+      <!-- 반복문에는 key 값 붙여줘야 함 ! -->
+      <!-- <li v-for="todo in todos" v-bind:key="todo.date"> 속성에다가 할당할 수 있는 방법 : v-bind -->
+      <li v-for="todo in todos" :key="todo.date">
+        <!-- 3. 완료 여부 변경 가능한 check box -->
+        <!-- li 태그는 체크박스 가지고 있어야 함 -->
+        <!-- 메서드를 생성하고 클릭해도 isCompleted 값이 바뀌지 않음! -->
+        <!-- 이유?? : 체크박스는 checked라는 속성이 있는데, 그걸 todo.isCompleted와 바인딩할 것 -->
+        <input 
+          type="checkbox"
+          :checked="todo.isCompleted"
+          @click="isCompletedToggle(todo)"
+        > <!-- 메서드에 반복문으로 돌아가는 todo 객체를 인자로 넣어주면 같이 반환됨-->
+        <!-- 바인딩, v-on 없어도 v-model="todo.isCompleted" 하면 가능 -->
+
+        <!-- 본문 들어갈 span 태그 -->
+        <!-- isCompleted가 바뀔 때마다 취소선이 생겨야 함 -->
+        <!-- 데이터와 연결해야 하므로 바인딩 shortcut 사용 (변수처럼 작동하므로 T/F는 작동하지 않음) -->
+        <!-- True일 경우 completed 클래스를 사용할 것이다 -->
+        <!-- 왼쪽에 있는 클래스를 부여할 건데, 오른쪽의 값이 True일 때 -->
+
+        <!-- True일때와 False일때의 동작을 나누려면 ? -> 쉼표, 부정형 사용하는 다중 바인딩 방식도 가능-->
+        <!-- { completed : todo.isCompleted, none: !todo.isCompleted } -->
+        <!-- head에서 style 태그를 통해 completed와 none 클래스 만들어서 적용 가능 -->
+        <span
+          :class="{ completed : todo.isCompleted }"
+        >
+          {{ todo.content }}
+        </span>
+      </li>
+    </ul>
+    <!-- 4. 완료된 일 지우는 button -->
+    <!-- isCompleted 된 애들을 모두 지울거다 - 메서드 동작 -->
+    <button @click="deleteCompleted">완료된 할 일 지우기</button>
+  </div>
+  
+  
+  <!-- Vue cdn-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        content: null, // input태그와 연결해주는 값으로 처음에는 null로 넣어줌
+        // todos 안에 객체들을 넣어줄 것
+        // 내용, 완료 여부 등
+        todos: [
+          {
+            content: '워크샵',
+            isCompleted: false,
+            // 새로 생성된 객체 Date가 만들어진 시간을 넣을 것
+            date: new Date().getTime()
+          },
+          {
+            content: '홈워크',
+            isCompleted: false,
+            // 새로 생성된 객체 Date가 만들어진 시간을 넣을 것
+            date: new Date().getTime() + 1
+          },
+        ]
+      },
+      // addTodo 메서드 정의
+      methods: {
+        addTodo() {
+          const todo = {
+            content: this.content,
+            isCompleted: false,
+            date: new Date().getTime()
+          }
+          this.todos.push(todo)
+          this.content = null
+        },
+        isCompletedToggle(todo) {
+          todo.isCompleted = !todo.isCompleted
+        },
+        deleteCompleted() {
+          // isCompleted가 False인 애들만 모아놓을 수 있도록 재할당할 것임
+          // False인 애들 빼고 삭제하기
+          this.todos = this.todos.filter(function (todo) {
+            // 반환값이 true인 객체들만 모아서 새 배열을 생성하는 것
+            return !todo.isCompleted
+          })
+        }
+
+
+        // deleteCompleted() {
+        //   // isCompleted가 False인 애들만 모아놓을 수 있도록 재할당할 것임
+        //   // False인 애들 빼고 삭제하기
+        //   this.todos = this.todos.filter((todo) => !todo.isCompleted)
+        // }
+      }
+    })
+
+  </script>
+</body>
+</html>
