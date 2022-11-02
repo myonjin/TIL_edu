@@ -1,6 +1,7 @@
 <template>
   <div class="">
-
+    <hr>
+    <h2>이곳은 Helloworld.vue 입니다</h2>
     <h3>{{ msg }}</h3>
    
   </div>

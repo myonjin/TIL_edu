@@ -2,8 +2,6 @@
   <div id="app">
     <h1>이곳은 App.vue입니다</h1>
     <img alt="Vue logo" src="./assets/logo.png">
-    <hr>
-    <h2>이곳은 Helloworld.vue 입니다</h2>
     <HelloWorld msg="SSAFY 여러분을 응원합니다"/>
   </div>
 </template>
