@@ -6,16 +6,19 @@
       <TodoListItem :todo="todo" @delete-todo="deleteTodo"/>
 
     </ul>
+    <TodoListItem @add-todo="onAddTodo"></TodoListItem>
   </div>
 </template>
 
 <script>
-import TodoListItem from '@/components/TodoListItem'
+// import TodoListItem from '@/components/TodoListItem'
+import TodoListItem from './TodoListItem.vue'
 
 export default {
   name : 'TodoList',
   components:{
     TodoListItem,
+    
 
   },
   props:{
@@ -25,7 +28,11 @@ export default {
   methods :{
     deleteTodo : function (todo) {
       this.$emit('delete-todo',todo)
+    },
+    onAddTodo : function (inputData) {
+      console.log(inputData)
     }
+
   }
 }
 </script>
