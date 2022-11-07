@@ -4,7 +4,9 @@
     <!-- 3. 보여주기 -->
     <MyComponent/>
     
-    <HelloWorld msg-title="Welcome to Your Vue.js App"/>
+    
+    <hello-world @click="onClick"></hello-world>
+    <hello-world @click.native="onClick"></hello-world>
   </div>
 </template>
 
@@ -21,6 +23,11 @@ export default {
     // 2. 등록하기
     MyComponent,
 
+  },
+  methods: {
+    onClick: function () {
+      console.log('Hello!')
+    }
   }
 }
 </script>

@@ -1,8 +1,12 @@
 <template>
   <div>
     <li>
-      {{todo.title}}
+      
       <button @click="deleteTodo">XX</button>
+
+
+      <input type="text" v-model="inputData">
+      <button @click="onClick">추가</button>
     </li>
   </div>
 </template>
@@ -14,9 +18,17 @@ export default {
   props: {
     todo : Object,
   },
+  data: function () {
+    return {
+      inputData:'',
+    }
+  },
   methods:{
     deleteTodo: function () {
       this.$emit('delete-todo', this.todo)
+    },
+    onClick : function () {
+      this.$emit('add-todo',this.inputData)
     }
   }
 }
