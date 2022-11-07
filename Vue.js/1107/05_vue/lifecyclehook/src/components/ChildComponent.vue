@@ -30,12 +30,15 @@ export default {
   mounted() {
     console.log('mounted')
   },
+
+
   beforeUpdate() {
     console.log('beforeUpdate')
   },
   updated() {
     console.log('updated')
   },
+  
   beforeDestroy() {
     console.log('beforeDestroy')
   },
