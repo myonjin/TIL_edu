@@ -20,7 +20,7 @@ export default {
   components: {
     TodoList,
     TodoForm,
-  },
+  },  
   computed:{
     allTodosCount() {
       return this.$store.getters.allTodosCount

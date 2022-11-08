@@ -2,7 +2,6 @@
   <div>
     <span @click="updateTodoStatus" :class="{'a': todo.isCompleted}"
     
-
      >{{todo.title}}</span>
     <button @click="deleteTodo">Delete</button>
   
